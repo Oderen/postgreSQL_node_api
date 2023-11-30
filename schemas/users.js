@@ -3,9 +3,7 @@ const Joi = require("joi");
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const emailValidation = Joi.string().pattern(emailRegex);
 const passwordValidation = Joi.string().min(6).required();
-const onlyLettersValidation = Joi.string()
-  .allow("")
-  .pattern(new RegExp("^[A-Za-z]+$"));
+const onlyLettersValidation = Joi.string().pattern(new RegExp("^[A-Za-z]+$"));
 
 const userSchema = Joi.object({
   first_name: onlyLettersValidation.required(),
@@ -16,7 +14,6 @@ const userSchema = Joi.object({
 });
 
 const updateSchema = Joi.object({
-  id: Joi.string().required(),
   first_name: onlyLettersValidation.required(),
   last_name: onlyLettersValidation,
   email: emailValidation.required(),

@@ -1,10 +1,18 @@
 const pool = require("./database/Pool");
-const { http } = require("./socket");
+const { server, socketIO } = require("./socket");
+
+socketIO.on("connect", (socket) => {
+  console.log(`User connected`);
+
+  socket.on("disconnect", () => {
+    console.log(" User disconnected");
+  });
+});
 
 (async () => {
   try {
     await pool.connect();
-    http.listen(3000, () => {
+    server.listen(2222, () => {
       console.log("Server is running");
     });
   } catch (error) {

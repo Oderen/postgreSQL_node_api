@@ -1,2 +1,2 @@
-const { socketIO, http } = require("./socket.js");
-module.exports = { socketIO, http };
+const { socketIO, server } = require("./socket.js");
+module.exports = { socketIO, server };

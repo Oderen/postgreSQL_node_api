@@ -1,7 +1,6 @@
 const pool = require("../database");
 const { ctrlWrappwer, HttpError } = require("../helpers");
 const bcrypt = require("bcryptjs");
-const { socketIO } = require("../socket");
 
 const path = require("path");
 require("dotenv").config({
@@ -41,8 +40,9 @@ const getUserById = async (req, res) => {
   res.status(200).json(user);
 };
 
-const updateUserbyID = async (req, res) => {
+const updateUserbyID = async (socketIO, req, res) => {
   const { id } = req.params;
+
   const { first_name, last_name, email, phone, password } = req.body;
   let passInfo = password;
   if (password) passInfo = await bcrypt.hash(password, 10);
@@ -52,14 +52,18 @@ const updateUserbyID = async (req, res) => {
   );
 
   socketIO.emit("userUpdate", {
-    message: `User ${first_name} ${last_name} with id ${id} was successfully updated`,
+    message: `User ${first_name} ${last_name} was successfully updated`,
   });
 
-  res.status(200).json({ message: "User was successfully updated" });
+  res.status(200).json({
+    message: `User ${first_name} ${last_name} was successfully updated`,
+  });
 };
 
 module.exports = {
   createUser: ctrlWrappwer(createUser),
   getUserById: ctrlWrappwer(getUserById),
-  updateUserbyID: ctrlWrappwer(updateUserbyID),
+  updateUserbyID: ctrlWrappwer((req, res) =>
+    updateUserbyID(require("../socket").socketIO, req, res)
+  ),
 };
