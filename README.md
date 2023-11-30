@@ -1,6 +1,6 @@
 # Node.js + PostgreSQL Task
 
-In this task I decided to use CommonJS modules just to show my understanding of it.
+In this task, I chose to use CommonJS modules to demonstrate my understanding of them. Additionally, I deliberately pushed dev.env to showcase the local variables I worked with.
 
 The backend meets all neccessary requirements:
 
