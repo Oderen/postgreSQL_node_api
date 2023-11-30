@@ -2,7 +2,7 @@
 
 In this task, I chose to use CommonJS modules to demonstrate my understanding of them. Additionally, I deliberately pushed dev.env to showcase the local variables I worked with.
 
-The backend meets all neccessary requirements:
+**The backend meets all neccessary requirements:**
 
 1. /users POST - create user with the next fields: first_name (required, only letters),
    last_name (only letters), email (required, unique, correct format), phone (correct format),
@@ -12,7 +12,7 @@ The backend meets all neccessary requirements:
 4. /users/:id PUT - update user, add validation. Connect Socket.IO for sending push
    notifications after user update.
 
-The task includes the following technologies and libraries:
+**The task includes the following technologies and libraries:**
 
 1. PostgreSQL Database
 2. JavaScript
